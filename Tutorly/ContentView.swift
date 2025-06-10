@@ -49,7 +49,7 @@ struct ContentView: View {
                                     .padding()
                                     .background(Color.gray.opacity(0.9))
                                     .foregroundColor(Color.black)
-                                    .cornerRadius(21)
+                                    .cornerRadius(20)
                             }
                         }
                         .padding(.horizontal, 40)
