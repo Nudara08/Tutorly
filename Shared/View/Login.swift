@@ -1,13 +1,14 @@
 //
-//  ContentView.swift
+//  Login.swift
 //  Tutorly
 //
-//  Created by Nudara Jayasinghe on 8/6/2025.
+//  Created by Nudara Jayasinghe on 17/6/2025.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
         NavigationView {
                     VStack(spacing: 30) {
@@ -76,8 +77,8 @@ extension Color {
 
         self.init(red: r, green: g, blue: b)
     }
-}               
+}
 
 #Preview {
-    ContentView()
+    login()
 }

@@ -6,6 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B91447882E011E6200706937 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447842E011E6200706937 /* ContentView.swift */; };
+		B914478A2E011E6200706937 /* TutorlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447862E011E6200706937 /* TutorlyApp.swift */; };
+		B91447952E011F5900706937 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = B91447942E011F5900706937 /* SwiftyGif */; };
+		B948BA1E2E0032CF00E44646 /* StreamChatSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA1D2E0032CF00E44646 /* StreamChatSwiftUI */; };
+		B948BA212E0032F700E44646 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA202E0032F700E44646 /* Nuke */; };
+		B948BA232E0032F700E44646 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA222E0032F700E44646 /* NukeExtensions */; };
+		B948BA252E0032F700E44646 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA242E0032F700E44646 /* NukeUI */; };
+		B948BA272E0032F700E44646 /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA262E0032F700E44646 /* NukeVideo */; };
+		B95497832E02237700C6E531 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497812E02237700C6E531 /* SignInView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B9FF6AB52DF5BA39005C93EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +36,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B91447842E011E6200706937 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B91447862E011E6200706937 /* TutorlyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorlyApp.swift; sourceTree = "<group>"; };
+		B91447A72E01212700706937 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
+		B91447A82E01214700706937 /* StreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewModel.swift; sourceTree = "<group>"; };
+		B91447A92E01217E00706937 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		B91447AA2E01226500706937 /* CreateNewChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewChannel.swift; sourceTree = "<group>"; };
+		B91447AB2E01228200706937 /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
+		B91447AC2E0122FF00706937 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		B95497812E02237700C6E531 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		B95497972E02270000C6E531 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B9FF6AA42DF5BA38005C93EC /* Tutorly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FF6AB42DF5BA39005C93EC /* TutorlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FF6ABE2DF5BA39005C93EC /* TutorlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +74,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B948BA1E2E0032CF00E44646 /* StreamChatSwiftUI in Frameworks */,
+				B948BA212E0032F700E44646 /* Nuke in Frameworks */,
+				B948BA272E0032F700E44646 /* NukeVideo in Frameworks */,
+				B948BA232E0032F700E44646 /* NukeExtensions in Frameworks */,
+				B948BA252E0032F700E44646 /* NukeUI in Frameworks */,
+				B91447952E011F5900706937 /* SwiftyGif in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,9 +100,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B91447A22E01206900706937 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B91447A72E01212700706937 /* Credential.swift */,
+				B91447A52E01208B00706937 /* ViewModel */,
+				B91447A42E01207A00706937 /* Model */,
+				B91447A32E01206F00706937 /* View */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B91447A32E01206F00706937 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B91447AC2E0122FF00706937 /* LoadingScreen.swift */,
+				B95497812E02237700C6E531 /* SignInView.swift */,
+				B95497972E02270000C6E531 /* SignUpView.swift */,
+				B91447AB2E01228200706937 /* ChannelView.swift */,
+				B91447AA2E01226500706937 /* CreateNewChannel.swift */,
+				B91447A92E01217E00706937 /* Login.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B91447A42E01207A00706937 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B91447842E011E6200706937 /* ContentView.swift */,
+				B91447862E011E6200706937 /* TutorlyApp.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B91447A52E01208B00706937 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B91447A82E01214700706937 /* StreamViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B9FF6A9B2DF5BA38005C93EC = {
 			isa = PBXGroup;
 			children = (
+				B91447A22E01206900706937 /* Shared */,
 				B9FF6AA62DF5BA38005C93EC /* Tutorly */,
 				B9FF6AB72DF5BA39005C93EC /* TutorlyTests */,
 				B9FF6AC12DF5BA39005C93EC /* TutorlyUITests */,
@@ -112,6 +182,12 @@
 			);
 			name = Tutorly;
 			packageProductDependencies = (
+				B948BA1D2E0032CF00E44646 /* StreamChatSwiftUI */,
+				B948BA202E0032F700E44646 /* Nuke */,
+				B948BA222E0032F700E44646 /* NukeExtensions */,
+				B948BA242E0032F700E44646 /* NukeUI */,
+				B948BA262E0032F700E44646 /* NukeVideo */,
+				B91447942E011F5900706937 /* SwiftyGif */,
 			);
 			productName = Tutorly;
 			productReference = B9FF6AA42DF5BA38005C93EC /* Tutorly.app */;
@@ -195,6 +271,11 @@
 			);
 			mainGroup = B9FF6A9B2DF5BA38005C93EC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B948BA1C2E0032CF00E44646 /* XCRemoteSwiftPackageReference "stream-chat-swiftui" */,
+				B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */,
+				B91447932E011F5900706937 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B9FF6AA52DF5BA38005C93EC /* Products */;
 			projectDirPath = "";
@@ -236,6 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B95497832E02237700C6E531 /* SignInView.swift in Sources */,
+				B91447882E011E6200706937 /* ContentView.swift in Sources */,
+				B914478A2E011E6200706937 /* TutorlyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +642,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B91447932E011F5900706937 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.5;
+			};
+		};
+		B948BA1C2E0032CF00E44646 /* XCRemoteSwiftPackageReference "stream-chat-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getstream/stream-chat-swiftui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B91447942E011F5900706937 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B91447932E011F5900706937 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		B948BA1D2E0032CF00E44646 /* StreamChatSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B948BA1C2E0032CF00E44646 /* XCRemoteSwiftPackageReference "stream-chat-swiftui" */;
+			productName = StreamChatSwiftUI;
+		};
+		B948BA202E0032F700E44646 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		B948BA222E0032F700E44646 /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+		B948BA242E0032F700E44646 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+		B948BA262E0032F700E44646 /* NukeVideo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeVideo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B9FF6A9C2DF5BA38005C93EC /* Project object */;
 }
