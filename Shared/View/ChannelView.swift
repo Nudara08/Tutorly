@@ -54,3 +54,8 @@ struct ChannelView: View {
     }
 }
 
+#Preview {
+    ChannelView()
+    .environmentObject(StreamViewModel())
+
+}

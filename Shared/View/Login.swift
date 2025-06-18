@@ -9,6 +9,10 @@ import SwiftUI
 
 struct Login: View {
     
+    @EnvironmentObject var StreamData : StreamViewModel
+    // changing based on colour scheme
+    @Environment(\.colorScheme) var colourScheme
+    
     var body: some View {
         NavigationView {
                     VStack(spacing: 30) {
@@ -76,6 +80,23 @@ extension Color {
         let b = Double(rgb & 0xFF) / 255
 
         self.init(red: r, green: g, blue: b)
+    }
+}
+
+struct ShadowModifier: ViewModifier{
+    
+    // changing based on colour scheme
+    @Environment(\.colorScheme) var colourScheme
+    func body(content: Content) -> some View {
+        
+        return content
+            .padding(.vertical, 10)
+            .padding(.horizontal)
+            .background(colourScheme != .dark ? Color.white : Color.black)
+            .cornerRadius(8)
+            .clipped()
+            .shadow(color: Color.primary.opacity(0.0), radius: 5, x: 5, y: 5)
+            .shadow(color: Color.primary.opacity(0.0), radius: 5, x: -5, y: -5)
     }
 }
 

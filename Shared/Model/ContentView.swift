@@ -18,7 +18,6 @@ struct ContentView: View {
             
             if !logStatus{
                 Login()
-                    .navigationTitle("Login")
             }
             else{
                 ChannelView()

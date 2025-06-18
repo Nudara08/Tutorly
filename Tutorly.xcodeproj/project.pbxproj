@@ -22,7 +22,6 @@
 		B954979D2E0281BE00C6E531 /* CreateNewChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AA2E01226500706937 /* CreateNewChannel.swift */; };
 		B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AC2E0122FF00706937 /* LoadingScreen.swift */; };
 		B954979F2E0281C700C6E531 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447A92E01217E00706937 /* Login.swift */; };
-		B95497A12E02838E00C6E531 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A02E02832800C6E531 /* Modifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +52,6 @@
 		B95497812E02237700C6E531 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B95497972E02270000C6E531 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B95497992E02801000C6E531 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
-		B95497A02E02832800C6E531 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		B9FF6AA42DF5BA38005C93EC /* Tutorly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FF6AB42DF5BA39005C93EC /* TutorlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FF6ABE2DF5BA39005C93EC /* TutorlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,7 +109,6 @@
 		B91447A22E01206900706937 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				B95497A02E02832800C6E531 /* Modifiers.swift */,
 				B95497992E02801000C6E531 /* Credential.swift */,
 				B91447A52E01208B00706937 /* ViewModel */,
 				B91447A32E01206F00706937 /* View */,
@@ -330,7 +327,6 @@
 				B954979A2E0281AE00C6E531 /* StreamViewModel.swift in Sources */,
 				B954979B2E0281B600C6E531 /* SignUpView.swift in Sources */,
 				B95497832E02237700C6E531 /* SignInView.swift in Sources */,
-				B95497A12E02838E00C6E531 /* Modifiers.swift in Sources */,
 				B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */,
 				B91447882E011E6200706937 /* ContentView.swift in Sources */,
 				B954979F2E0281C700C6E531 /* Login.swift in Sources */,
