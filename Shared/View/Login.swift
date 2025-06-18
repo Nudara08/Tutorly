@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Login: View {
     
     var body: some View {
         NavigationView {
@@ -80,5 +80,5 @@ extension Color {
 }
 
 #Preview {
-    login()
+    Login()
 }

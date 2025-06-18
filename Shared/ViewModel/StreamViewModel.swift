@@ -35,7 +35,7 @@ class StreamViewModel: ObservableObject {
         
         withAnimation{IsLoading = true}
         
-        let config = ChatClientConfig(apiKeyString: APIKey)
+        let config = ChatClientConfig(apiKeyString: "nsfz6wr254ky")
         ChatClient.shared = ChatClient(config: config)
         ChatClient.shared.connectUser(
             userInfo: .init(id: userName),

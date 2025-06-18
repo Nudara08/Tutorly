@@ -9,7 +9,7 @@ import SwiftUI
 import StreamChat
 
 @main
-struct message_testApp: App {
+struct TutorlyApp: App {
     
     // Calling Delegate...
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -34,18 +34,18 @@ class AppDelegate: NSObject, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        ChatClient.shared.connectUser(userInfo: .init(id: storedUser), token: .development(userId: storedUser))
-//        ChatClient.shared = ChatClient(config: config)
+        let config = ChatClientConfig(apiKeyString: "nsfz6wr254ky")
+        ChatClient.shared = ChatClient(config: config)
 
         if logStatus {
-            ChatClient.shared.connectUser(userInfo: .init(id: storedUser), token: .development(userId: storedUser)
-            )
+            ChatClient.shared.connectUser(userInfo: .init(id: storedUser), token: .development(userId: storedUser))
         }
         else{
             
-//            ChatClient.shared = ChatClient(config: config)
-            
             ChatClient.shared.connectAnonymousUser()
+            ChatClient.shared.connectAnonymousUser()
+//            ChatClient.shared = ChatClient(config: config, TokenProvider: .anonymous)
+
         }
         
         return true
