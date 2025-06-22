@@ -77,6 +77,7 @@ struct CardStackView: View {
                                 }
                             )
                             .frame(width: cardWidth)
+                            .padding(.horizontal, 5) // Added horizontal padding
                             .offset(x: calculateOffset(for: index, in: geometry))
                             .zIndex(calculateZIndex(for: index))
                             .scaleEffect(calculateScale(for: index))
@@ -119,13 +120,15 @@ struct CardStackView: View {
     }
     
     private func calculateOffset(for index: Int, in geometry: GeometryProxy) -> CGFloat {
-        let cardWidth = geometry.size.width * 0.7
-        let spacing: CGFloat = 30 // space between cards
+        let cardWidth = geometry.size.width * 0.8
+        let spacing: CGFloat = 50 // Increased spacing for more padding
         let adjustedIndex = CGFloat(index - activeIndex)
-        // Center card is always at 0, others are spaced left/right
-        let offset = adjustedIndex * (cardWidth + spacing) + dragOffset
+        // Center the active card by offsetting by half the available width minus half the card width
+        let centerOffset = (geometry.size.width - cardWidth) / 2
+        let offset = adjustedIndex * (cardWidth + spacing) + dragOffset + centerOffset
         return offset
     }
+    
     
     private func calculateZIndex(for index: Int) -> Double {
         let distance = abs(index - activeIndex)
