@@ -82,6 +82,18 @@ struct CardStackView: View {
                             .zIndex(calculateZIndex(for: index))
                             .scaleEffect(calculateScale(for: index))
                         }
+                        if profiles.isEmpty {
+                            VStack {
+                                Spacer()
+                                Text("No more available tutors for your selection. Please try again at another time")
+                                    .font(.custom("Didot", size: 24))
+                                    .foregroundColor(Color(red: 0.608, green: 0.482, blue: 0.443))
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 30)
+                                Spacer()
+                            }
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                        }
                     }
                     .simultaneousGesture(
                         DragGesture()
@@ -147,7 +159,6 @@ struct CarouselCard: View {
     let removeCard: (Int) -> Void
     
     @State private var offset: CGSize = .zero
-    @State private var showSwipeHint = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -190,21 +201,6 @@ struct CarouselCard: View {
                 .padding(.horizontal, 25)
                 .padding(.bottom, 35)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                
-                // Swipe Hint
-                if showSwipeHint {
-                    Text("Swipe up to send message request")
-                        .font(.subheadline)
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.black.opacity(0.7))
-                                .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 2)
-                        )
-                        .offset(y: -50)
-                        .transition(.opacity.combined(with: .scale))
-                }
             }
             .offset(y: offset.height)
             .gesture(
@@ -214,16 +210,6 @@ struct CarouselCard: View {
                         if abs(gesture.translation.height) > abs(gesture.translation.width) {
                             let limitedY = min(0, gesture.translation.height)
                             offset.height = limitedY
-                            
-                            if limitedY < -50 && !showSwipeHint {
-                                withAnimation(.easeIn(duration: 0.2)) {
-                                    showSwipeHint = true
-                                }
-                            } else if limitedY >= -50 && showSwipeHint {
-                                withAnimation(.easeOut(duration: 0.2)) {
-                                    showSwipeHint = false
-                                }
-                            }
                         }
                     }
                     .onEnded { gesture in
@@ -244,11 +230,22 @@ struct CarouselCard: View {
                             } else {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                     offset = .zero
-                                    showSwipeHint = false
                                 }
                             }
                         }
                     }
+            )
+            .overlay(
+                VStack {
+                    Spacer()
+                    if offset.height < -50 {
+                        Text("Swipe up to send message request")
+                            .font(.custom("Didot", size: 24)) // Use Canela font
+                            .foregroundColor(Color(red: 0.608, green: 0.482, blue: 0.443)) // #9b7b71
+                            .padding(.bottom, 10)
+                            .transition(.opacity.combined(with: .move(edge: .bottom)))
+                    }
+                }
             )
         }
         .aspectRatio(0.7, contentMode: .fit)
