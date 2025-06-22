@@ -21,7 +21,8 @@
 		B954979C2E0281BA00C6E531 /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AB2E01228200706937 /* ChannelView.swift */; };
 		B954979D2E0281BE00C6E531 /* CreateNewChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AA2E01226500706937 /* CreateNewChannel.swift */; };
 		B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AC2E0122FF00706937 /* LoadingScreen.swift */; };
-		B954979F2E0281C700C6E531 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447A92E01217E00706937 /* Login.swift */; };
+		B95497A52E03BBEB00C6E531 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A42E03BBBC00C6E531 /* Register.swift */; };
+		B95497A92E05180700C6E531 /* SwipeMech.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A82E05180000C6E531 /* SwipeMech.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,13 +46,14 @@
 		B91447842E011E6200706937 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B91447862E011E6200706937 /* TutorlyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorlyApp.swift; sourceTree = "<group>"; };
 		B91447A82E01214700706937 /* StreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewModel.swift; sourceTree = "<group>"; };
-		B91447A92E01217E00706937 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		B91447AA2E01226500706937 /* CreateNewChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewChannel.swift; sourceTree = "<group>"; };
 		B91447AB2E01228200706937 /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
 		B91447AC2E0122FF00706937 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		B95497812E02237700C6E531 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B95497972E02270000C6E531 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B95497992E02801000C6E531 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
+		B95497A42E03BBBC00C6E531 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		B95497A82E05180000C6E531 /* SwipeMech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMech.swift; sourceTree = "<group>"; };
 		B9FF6AA42DF5BA38005C93EC /* Tutorly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FF6AB42DF5BA39005C93EC /* TutorlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FF6ABE2DF5BA39005C93EC /* TutorlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,12 +122,13 @@
 		B91447A32E01206F00706937 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B95497A82E05180000C6E531 /* SwipeMech.swift */,
 				B95497812E02237700C6E531 /* SignInView.swift */,
 				B95497972E02270000C6E531 /* SignUpView.swift */,
 				B91447AB2E01228200706937 /* ChannelView.swift */,
 				B91447AA2E01226500706937 /* CreateNewChannel.swift */,
 				B91447AC2E0122FF00706937 /* LoadingScreen.swift */,
-				B91447A92E01217E00706937 /* Login.swift */,
+				B95497A42E03BBBC00C6E531 /* Register.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,11 +330,12 @@
 				B954979A2E0281AE00C6E531 /* StreamViewModel.swift in Sources */,
 				B954979B2E0281B600C6E531 /* SignUpView.swift in Sources */,
 				B95497832E02237700C6E531 /* SignInView.swift in Sources */,
+				B95497A52E03BBEB00C6E531 /* Register.swift in Sources */,
 				B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */,
 				B91447882E011E6200706937 /* ContentView.swift in Sources */,
-				B954979F2E0281C700C6E531 /* Login.swift in Sources */,
 				B954979D2E0281BE00C6E531 /* CreateNewChannel.swift in Sources */,
 				B914478A2E011E6200706937 /* TutorlyApp.swift in Sources */,
+				B95497A92E05180700C6E531 /* SwipeMech.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

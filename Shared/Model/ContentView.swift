@@ -11,18 +11,20 @@ struct ContentView: View {
     
     @EnvironmentObject var streamData: StreamViewModel
     @AppStorage("log_Status") var logStatus = false
-
     
     var body: some View {
         NavigationView{
+            Group{
             
             if !logStatus{
-                Login()
+                Register()
+                Spacer()
             }
             else{
                 ChannelView()
             }
         }
+    }
         .alert(isPresented: $streamData.error, content: {
             Alert(title: Text(streamData.errorMsg))
         })
@@ -32,10 +34,13 @@ struct ContentView: View {
                     LoadingScreen()
                 }
                 // New Channel View...
-                if streamData.createNewChannel{CreateNewChannel()}
+                if streamData.createNewChannel{
+                    CreateNewChannel()
+                }
             }
         )
         .environmentObject(streamData)
+        .ignoresSafeArea()
     }
 }
 
