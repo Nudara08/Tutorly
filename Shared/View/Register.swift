@@ -39,7 +39,7 @@ struct Register: View {
 
                         // Buttons
                         VStack(spacing: 15) {
-                            NavigationLink(destination: SignInView()) {
+                            NavigationLink(destination: SignUpView()) {
                                 Text("Sign in")
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -48,7 +48,7 @@ struct Register: View {
                                     .cornerRadius(20)
                             }
 
-                            NavigationLink(destination: SignInView()) {
+                            NavigationLink(destination: SignUpView()) {
                                 Text("Sign up")
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -84,6 +84,10 @@ extension Color {
     }
 }
 
-#Preview {
-    Register()
+struct Register_Previews: PreviewProvider{
+    static var previews: some View{
+        Register()
+      .environmentObject(StreamViewModel())
+        
+    }
 }

@@ -7,53 +7,101 @@
 
 import SwiftUI
 
-import SwiftUI
-
-struct Login:View {
+struct SignUpView:View {
     
-    @EnvironmentObject var StreamData : StreamViewModel
-    
-    
-    // changing based on colour scheme
-    @Environment(\.colorScheme) var colourScheme
-
+    @State var isLoginMode = false
+    @State var email = ""
+    @State var password = ""
     
     var body: some View {
-        VStack{
-            Spacer()
-            TextField("Username", text: $StreamData.userName)
-                .modifier(ShadowModifier())
-                .padding(.top, 30)
-            
-            Button(action: StreamData.LogInUser , label: {
-                HStack{
-                    Spacer()
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 16) {
+                    Picker(selection: $isLoginMode, label: Text("Picker here").font(.custom("Didot", size: 16))) {
+                        Text("Login")
+                            .tag(true)
+                            .font(.custom("Didot", size: 16))
+                        Text("Create Account")
+                            .tag(false)
+                            .font(.custom("Didot", size: 16))
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .onAppear {
+                        let selectedColor = UIColor(red: 236/255, green: 174/255, blue: 175/255, alpha: 1.0) // #ecaeaf
+                        UISegmentedControl.appearance().selectedSegmentTintColor = selectedColor
+                        UISegmentedControl.appearance().setTitleTextAttributes([
+                            .font: UIFont(name: "Didot", size: 16) ?? UIFont.systemFont(ofSize: 16)
+                                                ], for: .normal)
+                        UISegmentedControl.appearance().setTitleTextAttributes([
+                            .font: UIFont(name: "Didot", size: 16) ?? UIFont.systemFont(ofSize: 16)
+                                                ], for: .selected)
+                    }
+
                     
-                    Text("Login")
-                    Spacer()
-                    Image(systemName: "arrow.right")
+                    if !isLoginMode {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 64))
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                    }
+                    
+                    Group {
+                        TextField("Email", text: $email)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
+                            .font(.custom("Didot", size: 16))
+                            .padding(12)
+                            .background(Color.clear)
+                            .overlay(RoundedRectangle(cornerRadius: 2)
+                                        .stroke(Color.black, lineWidth: 2))
+                        SecureField("Password", text: $password)
+                            .font(.custom("Didot", size: 16))
+                            .padding(12)
+                            .background(Color.clear)
+                            .overlay(RoundedRectangle(cornerRadius: 2)
+                                        .stroke(Color.black, lineWidth: 2))
+                    }
+                    
+                    Button {
+                        handleAction()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text(isLoginMode ? "Log In" : "Create Account")
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
+                        .background(Color(hex: "#b2b3b3"))
+                        .cornerRadius(8)
+                    }
                 }
-                .padding(.vertical, 10)
-                .padding(.horizontal)
-                .background(Color.primary)
-                .foregroundColor(colourScheme == .dark ? .black : .white)
-                .cornerRadius(5)
-            })
-            .padding(.top, 20)
-            .disabled(StreamData.userName == "")
-            .opacity(StreamData.userName == "" ? 0.5 : 1)
-            Spacer()
-        }
-        .padding()
+                .padding()
+                
+            }
+            .navigationTitle(isLoginMode ? "Log In" : "Create Account")
+            .font(.custom("Didot", size: 20))
+            .background(Color(hex: "#e5c7cd")
+                            .ignoresSafeArea())
         }
     }
+    
+    private func handleAction() {
+        if isLoginMode {
+            print("Should log into Firebase with existing credentials")
+        } else {
+            print("Register a new account inside of Firebase Auth and then store image in Storage somehow....")
+        }
+    }
+}
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        Login()
+        SignUpView()
     .environmentObject(StreamViewModel())
 
     }
 }
-
-

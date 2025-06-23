@@ -37,6 +37,7 @@ class AppDelegate: NSObject, UIApplicationDelegate{
         let config = ChatClientConfig(apiKeyString: "nsfz6wr254ky")
         ChatClient.shared = ChatClient(config: config)
 
+        // if user is logged in...
         if logStatus {
             ChatClient.shared.connectUser(userInfo: .init(id: storedUser), token: .development(userId: storedUser))
         }
@@ -51,6 +52,25 @@ class AppDelegate: NSObject, UIApplicationDelegate{
         return true
     }
 }
+// creating a Modifier for shadow so that it can be used for some other views...
+
+struct ShadowModifier: ViewModifier{
+    
+    // changing based on colour scheme
+    @Environment(\.colorScheme) var colourScheme
+    func body(content: Content) -> some View {
+        
+        return content
+            .padding(.vertical, 10)
+            .padding(.horizontal)
+            .background(colourScheme != .dark ? Color.white : Color.black)
+            .cornerRadius(8)
+            .clipped()
+            .shadow(color: Color.primary.opacity(0.0), radius: 5, x: 5, y: 5)
+            .shadow(color: Color.primary.opacity(0.0), radius: 5, x: -5, y: -5)
+    }
+}
+
 
 // Stream API...
 

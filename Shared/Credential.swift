@@ -12,3 +12,7 @@ let APIKey = "nsfz6wr254ky"
 let config = ChatClientConfig(apiKey: .init(apiKeyString))
 let client = ChatClient(config: config)
 let streamChat = StreamChat(chatClient: chatClient)
+
+extension ChatClient {
+    static var shared: ChatClient!
+}
