@@ -103,8 +103,10 @@ class StreamViewModel: ObservableObject {
             if let error = err{
                 self.errorMsg = error.localizedDescription
                 self.error.toggle()
+                print("Error creating channel: \(error.localizedDescription)") // Debugging statement
                 return
             }
+            print("Channel created successfully: \(self.channelName)") // Debugging statement
             // Success...
             // closing Loading And New Channel View...
             self.channelName = ""

@@ -6,5 +6,9 @@
 //
 
 import SwiftUI
+import StreamChat
 
 let APIKey = "nsfz6wr254ky"
+let config = ChatClientConfig(apiKey: .init(apiKeyString))
+let client = ChatClient(config: config)
+let streamChat = StreamChat(chatClient: chatClient)

@@ -165,7 +165,7 @@ struct CarouselCard: View {
             ZStack(alignment: .bottom) {
                 // Card Background
                 RoundedRectangle(cornerRadius: 30)
-                    .fill(Color.white)
+                    .fill(Color(red: 0.925, green: 0.682, blue: 0.686)) // #ecaeaf
                     .shadow(color: .gray.opacity(0.3), radius: 15, x: 0, y: 5)
                 
                 // Image with overlay
