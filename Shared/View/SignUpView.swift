@@ -6,12 +6,33 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+
+
+class FirebaseManager: NSObject {
+    
+    let auth: Auth
+    
+    static let shared = FirebaseManager()
+    
+    override init() {
+        FirebaseApp.configure()
+        
+        self.auth = Auth.auth()
+        
+        super.init()
+    }
+    
+}
 
 struct SignUpView:View {
     
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
+    
+    
     
     var body: some View {
         NavigationView {
@@ -78,6 +99,9 @@ struct SignUpView:View {
                         .background(Color(hex: "#b2b3b3"))
                         .cornerRadius(8)
                     }
+                    
+                    Text(self.LoginStatusMessage)
+                        .foregroundStyle(.red)
                 }
                 .padding()
                 
@@ -87,14 +111,45 @@ struct SignUpView:View {
             .background(Color(hex: "#e5c7cd")
                             .ignoresSafeArea())
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func handleAction() {
         if isLoginMode {
-            print("Should log into Firebase with existing credentials")
+//            print("Should log into Firebase with existing credentials")
+            loginUser()
         } else {
-            print("Register a new account inside of Firebase Auth and then store image in Storage somehow....")
+            CreateNewAccount()
+//            print("Register a new account inside of Firebase Auth and then store image in Storage somehow....")
         }
+    }
+    
+    private func loginUser() {
+            FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, err in
+                if let err = err {
+                    print("Failed to login user:", err)
+                    self.LoginStatusMessage = "Failed to login user: \(err)"
+                    return
+                }
+                
+                print("Successfully logged in as user: \(result?.user.uid ?? "")")
+                
+                self.LoginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
+            }
+        }
+    
+    @State var LoginStatusMessage = ""
+    private func CreateNewAccount() {
+        Auth.auth().createUser(withEmail: email, password: password) { result, err in
+            if let err = err {
+                print("Failed to create user", err)
+                self.LoginStatusMessage = "Failed to create user: \(err)"
+                
+            }
+            print ("Successfully created user: \(result?.user.uid ?? "")")
+            self.LoginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
+        }
+            
     }
 }
 
@@ -102,6 +157,7 @@ struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
     .environmentObject(StreamViewModel())
+        
 
     }
 }

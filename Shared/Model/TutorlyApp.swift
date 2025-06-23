@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StreamChat
+import Firebase
 
 @main
 struct TutorlyApp: App {
@@ -22,6 +23,8 @@ struct TutorlyApp: App {
         }
     }
 }
+
+
 
 // Delegate ...
 class AppDelegate: NSObject, UIApplicationDelegate{
