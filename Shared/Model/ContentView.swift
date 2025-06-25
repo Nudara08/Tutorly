@@ -6,41 +6,69 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     
-    @EnvironmentObject var streamData: StreamViewModel
-    @AppStorage("log_Status") var logStatus = false
+    @Environment(\.modelContext) private var context
+    @Query private var items: [DataItem]
     
     var body: some View {
-        NavigationView{
-            Group{
+        //        VStack{
+        //
+        //
+        //            Text("Add Dara")
+        //            Button("Add item"){
+        //                addItem()
+        //            }
+        //            List{
+        //                ForEach (items) { item in
+        //
+        //                    HStack{
+        //                        Text(item.name)
+        //                        Spacer()
+        //                        Button {
+        //                            updateItem(item)
+        //                        } label: {
+        //                            Image(systemName: "pencil")
+        //                        }
+        //
+        //                    }
+        //                }
+        //                .onDelete{ indexes in
+        //                    for index in indexes {
+        //                        deleteItem(items[index])
+        //
+        //                    }
+        //
+        //                }
+        //            }
+        //            }
+        //            .padding()
+        //
+        //        }
+        //    func addItem(){
+        //        let item = DataItem(name: "New Item")
+        //            context.insert(item)
+        //        print("hehe hi")
+        //    }
+        //    func deleteItem(_ item: DataItem) {
+        //        context.delete(item)
+        //    }
+        //    func updateItem(_ item: DataItem){
+        //        item.name = "Updated Item"
+        //        try? context.save()
+        //    }
+        //
+        //}
+        
+        Group{
             
-            if !logStatus{
-                Register()
-                Spacer()
-            }
-            else{
-                ChannelView()
-            }
+            
+            Register()
+//            Spacer()
+            
         }
-    }
-        .alert(isPresented: $streamData.error, content: {
-            Alert(title: Text(streamData.errorMsg))
-        })
-        .overlay(
-            ZStack {
-                if streamData.IsLoading {
-                    LoadingScreen()
-                }
-                // New Channel View...
-                if streamData.createNewChannel{
-                    CreateNewChannel()
-                }
-            }
-        )
-        .environmentObject(streamData)
-        .ignoresSafeArea()
     }
 }
 

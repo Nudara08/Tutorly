@@ -6,28 +6,121 @@
 //
 
 import SwiftUI
+import SwiftData
+
 
 struct SwipeMech: View {
+    @Environment(\.modelContext) private var context
+    @Query private var allProfiles: [Profile]
+    @State private var filteredProfiles: [Profile]? = nil
+    @State private var showSubjectFilter = true
+    @State private var selectedSubject: String = ""
+    @State private var didSeed = false
+    // Helper to normalize subject
+    private func normalizeSubject(_ subject: String) -> String {
+        subject.trimmingCharacters(in: .whitespacesAndNewlines).capitalized
+    }
+    // Helper to get all unique normalized subjects
+    private var allNormalizedSubjects: [String] {
+        // Depend on didSeed to force recompute after seeding
+        _ = didSeed
+        return Array(Set(allProfiles.map { normalizeSubject($0.subject) })).sorted()
+    }
+    
+    private func applySubjectFilter() {
+        if selectedSubject.isEmpty {
+            filteredProfiles = nil
+        } else {
+            filteredProfiles = allProfiles.filter { normalizeSubject($0.subject) == selectedSubject }
+        }
+    }
+    
     var body: some View {
-        CardStackView()
+        ZStack {
+            CardStackView(profiles: filteredProfiles ?? allProfiles)
+                .onAppear {
+                    // Always clear and reseed the database for development/demo
+                    let fetchRequest = FetchDescriptor<Profile>()
+                    let profiles = (try? context.fetch(fetchRequest)) ?? []
+                    for profile in profiles {
+                        context.delete(profile)
+                    }
+                    let initialProfiles = [
+                        Profile(id: 0, name: "Albert Deran", image: "albert-dera-ILip77SbmOE-unsplash", subject: "Chemistry"),
+                        Profile(id: 1, name: "Chloe Alexis", image: "alexis-chloe-TYDkKEgc0Fg-unsplash", subject: "Physics"),
+                        Profile(id: 2, name: "Gabriel Silverio", image: "gabriel-silverio-u3WmDyKGsrY-unsplash", subject: "Maths"),
+                        Profile(id: 3, name: "Joseph Gonzalez", image: "joseph-gonzalez-iFgRcqHznqg-unsplash", subject: "Maths"),
+                        Profile(id: 4, name: "Martin Fernandez", image: "mrtiger-PN19hB7_lHE-unsplash", subject: "CHemistry"),
+                        Profile(id: 5, name: "Nora Hutton", image: "nora-hutton-tCJ44OIqceU-unsplash", subject: "English"),
+                        Profile(id: 6, name: "Omid Armi", image: "omid-armin-UVx7Xx_b4a0-unsplash", subject: "Business"),
+                        Profile(id: 7, name: "Terasa", image: "omid-armin-yZwrmzKGKZA-unsplash", subject: "Physics")
+                    ]
+                    for profile in initialProfiles {
+                        context.insert(profile)
+                    }
+                    try? context.save()
+                    didSeed.toggle()
+                    filteredProfiles = nil
+                    DispatchQueue.main.async {
+                        if let firstSubject = allNormalizedSubjects.first {
+                            selectedSubject = firstSubject
+                        }
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name("RemoveSwipedProfile"))) { notification in
+                    if let id = notification.object as? Int {
+                        if filteredProfiles != nil {
+                            filteredProfiles?.removeAll { $0.id == id }
+                        } else {
+                            // If not filtered, remove from allProfiles is not possible (as it's @Query), so just ignore
+                        }
+                    }
+                }
+            if showSubjectFilter {
+                Color.black.opacity(0.4).ignoresSafeArea()
+                VStack(spacing: 20) {
+                    Text("Filter by Subject offered")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    if allNormalizedSubjects.isEmpty {
+                                            ProgressView("Loading subjects...")
+                                                .padding()
+                    } else {
+                        Picker("Select Subject", selection: Binding(
+                            get: { selectedSubject },
+                            set: { selectedSubject = normalizeSubject($0) }
+                        )) {
+                            ForEach(allNormalizedSubjects, id: \.self) { subject in
+                                Text(subject).tag(subject)
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                        .frame(maxWidth: .infinity)
+                        Button("Apply Filter") {
+                            applySubjectFilter()
+                            showSubjectFilter = false
+                        }
+                        .padding()
+                        .background(Color(hex: "#b2b3b3"))
+                        .cornerRadius(8)
+                    }
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(16)
+                .shadow(radius: 10)
+                .padding(40)
+            }
+        }
     }
 }
 
 struct CardStackView: View {
-    @State var profiles = [
-        Profile(id: 0, name: "Albert Deran", image: "albert-dera-ILip77SbmOE-unsplash", age: "27", offset: 0),
-        Profile(id: 1, name: "Chloe Alexis", image: "alexis-chloe-TYDkKEgc0Fg-unsplash", age: "19", offset: 0),
-        Profile(id: 2, name: "Gabriel Silverio", image: "gabriel-silverio-u3WmDyKGsrY-unsplash", age: "25", offset: 0),
-        Profile(id: 3, name: "Joseph Gonzalez", image: "joseph-gonzalez-iFgRcqHznqg-unsplash", age: "26", offset: 0),
-        Profile(id: 4, name: "Martin Fernandez", image: "mrtiger-PN19hB7_lHE-unsplash", age: "20", offset: 0),
-        Profile(id: 5, name: "Nora Hutton", image: "nora-hutton-tCJ44OIqceU-unsplash", age: "22", offset: 0),
-        Profile(id: 6, name: "Omid Armi", image: "omid-armin-UVx7Xx_b4a0-unsplash", age: "18", offset: 0),
-        Profile(id: 7, name: "Terasa", image: "omid-armin-yZwrmzKGKZA-unsplash", age: "29", offset: 0),
-    ]
-    
+    var profiles: [Profile]
     @State private var activeIndex: Int = 0
     @State private var dragOffset: CGFloat = 0
     @State private var showCreateChannel = false
+    @State private var swipedProfileId: Int? = nil
     @EnvironmentObject var streamData: StreamViewModel
     
     var body: some View {
@@ -62,27 +155,22 @@ struct CardStackView: View {
                     
                     ZStack {
                         ForEach(Array(profiles.enumerated()), id: \.element.id) { index, profile in
-                            CarouselCard(
-                                profile: profile,
-                                showCreateChannel: $showCreateChannel,
-                                removeCard: { id in
-                                    withAnimation {
-                                        if let index = profiles.firstIndex(where: { $0.id == id }) {
-                                            profiles.remove(at: index)
-                                            if activeIndex >= profiles.count {
-                                                activeIndex = 0
-                                            }
-                                        }
+                            if swipedProfileId != profile.id {
+                                CarouselCard(
+                                    profile: profile,
+                                    showCreateChannel: $showCreateChannel,
+                                    removeCard: { id in
+                                        swipedProfileId = id
                                     }
-                                }
-                            )
-                            .frame(width: cardWidth)
-                            .padding(.horizontal, 5) // Added horizontal padding
-                            .offset(x: calculateOffset(for: index, in: geometry))
-                            .zIndex(calculateZIndex(for: index))
-                            .scaleEffect(calculateScale(for: index))
+                                )
+                                .frame(width: cardWidth)
+                                .padding(.horizontal, 5)
+                                .offset(x: calculateOffset(for: index, in: geometry))
+                                .zIndex(calculateZIndex(for: index))
+                                .scaleEffect(calculateScale(for: index))
+                            }
                         }
-                        if profiles.isEmpty {
+                        if profiles.filter({ swipedProfileId != $0.id }).isEmpty {
                             VStack {
                                 Spacer()
                                 Text("No more available tutors for your selection. Please try again at another time")
@@ -126,6 +214,13 @@ struct CardStackView: View {
             .navigationDestination(isPresented: $showCreateChannel) {
                 CreateNewChannel()
                     .environmentObject(streamData)
+                    .onDisappear {
+                        if let id = swipedProfileId {
+                            // Remove the swiped card from the profiles in the parent view
+                            NotificationCenter.default.post(name: Notification.Name("RemoveSwipedProfile"), object: id)
+                            swipedProfileId = nil
+                        }
+                    }
             }
             .background(Color(red: 0.898, green: 0.78, blue: 0.804).edgesIgnoringSafeArea(.all))
         }
@@ -194,7 +289,7 @@ struct CarouselCard: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     
-                    Text("Age: \(profile.age)")
+                    Text("Subject: \(profile.subject)")
                         .font(.body)
                         .foregroundColor(.white.opacity(0.9))
                 }
@@ -252,13 +347,21 @@ struct CarouselCard: View {
     }
 }
 
-struct Profile: Identifiable {
-    var id: Int
+@Model
+class Profile: Identifiable {
+    @Attribute(.unique) var id: Int
     var name: String
     var image: String
-    var age: String
-    var offset: CGFloat
+    var subject: String
+
+    init(id: Int, name: String, image: String, subject: String) {
+        self.id = id
+        self.name = name
+        self.image = image
+        self.subject = subject
+    }
 }
+
 
 struct SwipeMech_Previews: PreviewProvider {
     static var previews: some View {

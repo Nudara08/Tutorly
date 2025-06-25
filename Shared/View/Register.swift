@@ -12,6 +12,8 @@ struct Register: View {
     @EnvironmentObject var StreamData : StreamViewModel
     // changing based on colour scheme
     @Environment(\.colorScheme) var colourScheme
+    @State private var isLoginMode = false
+    @State private var showSignUpView = false
     
     var body: some View {
         NavigationView {
@@ -39,8 +41,10 @@ struct Register: View {
 
                         // Buttons
                         VStack(spacing: 15) {
-                            NavigationLink(destination: SignUpView()) {
-                                Text("Sign in")
+                            Button(action: {
+                                isLoginMode = true
+                                showSignUpView.toggle()
+                            }) {                                Text("Sign in")
                                     .frame(maxWidth: .infinity)
                                     .padding()
                                     .background(Color.gray.opacity(0.9))
@@ -48,8 +52,10 @@ struct Register: View {
                                     .cornerRadius(20)
                             }
 
-                            NavigationLink(destination: SignUpView()) {
-                                Text("Sign up")
+                            Button(action: {
+                                isLoginMode = false
+                                showSignUpView.toggle()
+                            }) {                                Text("Sign up")
                                     .frame(maxWidth: .infinity)
                                     .padding()
                                     .background(Color.gray.opacity(0.9))
@@ -65,6 +71,9 @@ struct Register: View {
                     }
                     .padding()
                     .background(Color(hex: "#e5c7cd"))
+                    .fullScreenCover(isPresented: $showSignUpView) {
+                        SignUpView(isLoginMode: isLoginMode, didCompleteLoginProcess: <#() -> ()#>)
+                    }
                 }
             }
     }

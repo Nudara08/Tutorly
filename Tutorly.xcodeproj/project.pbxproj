@@ -15,6 +15,10 @@
 		B948BA232E0032F700E44646 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA222E0032F700E44646 /* NukeExtensions */; };
 		B948BA252E0032F700E44646 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA242E0032F700E44646 /* NukeUI */; };
 		B948BA272E0032F700E44646 /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA262E0032F700E44646 /* NukeVideo */; };
+		B94CD62E2E0BA9ED00FB7134 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CD62D2E0BA9E200FB7134 /* DataItem.swift */; };
+		B94CD6322E0C997400FB7134 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CD6312E0C996E00FB7134 /* FirebaseManager.swift */; };
+		B94CD6352E0CA16500FB7134 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B94CD6342E0CA16500FB7134 /* SDWebImageSwiftUI */; };
+		B94CD6372E0CA2C800FB7134 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CD6362E0CA2C100FB7134 /* ChatUser.swift */; };
 		B954979A2E0281AE00C6E531 /* StreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447A82E01214700706937 /* StreamViewModel.swift */; };
 		B954979B2E0281B600C6E531 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497972E02270000C6E531 /* SignUpView.swift */; };
 		B954979D2E0281BE00C6E531 /* CreateNewChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AA2E01226500706937 /* CreateNewChannel.swift */; };
@@ -51,6 +55,9 @@
 		B91447A82E01214700706937 /* StreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewModel.swift; sourceTree = "<group>"; };
 		B91447AA2E01226500706937 /* CreateNewChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewChannel.swift; sourceTree = "<group>"; };
 		B91447AC2E0122FF00706937 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		B94CD62D2E0BA9E200FB7134 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
+		B94CD6312E0C996E00FB7134 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		B94CD6362E0CA2C100FB7134 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		B95497972E02270000C6E531 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B95497992E02801000C6E531 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		B95497A42E03BBBC00C6E531 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
@@ -85,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94CD6352E0CA16500FB7134 /* SDWebImageSwiftUI in Frameworks */,
 				B948BA1E2E0032CF00E44646 /* StreamChatSwiftUI in Frameworks */,
 				B948BA212E0032F700E44646 /* Nuke in Frameworks */,
 				B9AD85872E099427005180D0 /* FirebaseStorage in Frameworks */,
@@ -142,6 +150,9 @@
 		B91447A42E01207A00706937 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B94CD6362E0CA2C100FB7134 /* ChatUser.swift */,
+				B94CD6312E0C996E00FB7134 /* FirebaseManager.swift */,
+				B94CD62D2E0BA9E200FB7134 /* DataItem.swift */,
 				B91447862E011E6200706937 /* TutorlyApp.swift */,
 				B91447842E011E6200706937 /* ContentView.swift */,
 			);
@@ -206,6 +217,7 @@
 				B9AD85822E099427005180D0 /* FirebaseAuth */,
 				B9AD85842E099427005180D0 /* FirebaseFirestore */,
 				B9AD85862E099427005180D0 /* FirebaseStorage */,
+				B94CD6342E0CA16500FB7134 /* SDWebImageSwiftUI */,
 			);
 			productName = Tutorly;
 			productReference = B9FF6AA42DF5BA38005C93EC /* Tutorly.app */;
@@ -294,6 +306,7 @@
 				B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */,
 				B91447932E011F5900706937 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 				B9AD85812E099427005180D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B94CD6332E0CA16500FB7134 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B9FF6AA52DF5BA38005C93EC /* Products */;
@@ -336,12 +349,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94CD6322E0C997400FB7134 /* FirebaseManager.swift in Sources */,
 				B954979A2E0281AE00C6E531 /* StreamViewModel.swift in Sources */,
 				B954979B2E0281B600C6E531 /* SignUpView.swift in Sources */,
 				B95497A52E03BBEB00C6E531 /* Register.swift in Sources */,
 				B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */,
+				B94CD62E2E0BA9ED00FB7134 /* DataItem.swift in Sources */,
 				B91447882E011E6200706937 /* ContentView.swift in Sources */,
 				B954979D2E0281BE00C6E531 /* CreateNewChannel.swift in Sources */,
+				B94CD6372E0CA2C800FB7134 /* ChatUser.swift in Sources */,
 				B914478A2E011E6200706937 /* TutorlyApp.swift in Sources */,
 				B9AD858B2E09A1DA005180D0 /* ImagePicker.swift in Sources */,
 				B9AD85802E098F42005180D0 /* ChannelView.swift in Sources */,
@@ -690,6 +706,14 @@
 				minimumVersion = 12.0.0;
 			};
 		};
+		B94CD6332E0CA16500FB7134 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		B9AD85812E099427005180D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -730,6 +754,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeVideo;
+		};
+		B94CD6342E0CA16500FB7134 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B94CD6332E0CA16500FB7134 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		B9AD85822E099427005180D0 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

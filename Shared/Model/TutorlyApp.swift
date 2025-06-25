@@ -8,9 +8,13 @@
 import SwiftUI
 import StreamChat
 import Firebase
+import SwiftData
 
 @main
 struct TutorlyApp: App {
+    init() {
+            FirebaseApp.configure()  // Configure here before anything else
+        }
     
     // Calling Delegate...
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -19,8 +23,8 @@ struct TutorlyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .environmentObject(StreamViewModel()) // ✅ required
         }
+        .modelContainer(for: [DataItem.self, Profile.self]) // Registering both DataItem and Profile for SwiftData
     }
 }
 
