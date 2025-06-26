@@ -25,6 +25,7 @@
 		B95497A52E03BBEB00C6E531 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A42E03BBBC00C6E531 /* Register.swift */; };
 		B95497A92E05180700C6E531 /* SwipeMech.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A82E05180000C6E531 /* SwipeMech.swift */; };
 		B977E6FE2E0CDC710091B68B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B977E6FD2E0CDC710091B68B /* SDWebImageSwiftUI */; };
+		B977E70F2E0DAD7D0091B68B /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B977E70E2E0DAD760091B68B /* ChatLogView.swift */; };
 		B9AD85802E098F42005180D0 /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AD857F2E098F42005180D0 /* ChannelView.swift */; };
 		B9AD85832E099427005180D0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9AD85822E099427005180D0 /* FirebaseAuth */; };
 		B9AD85852E099427005180D0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9AD85842E099427005180D0 /* FirebaseFirestore */; };
@@ -62,6 +63,7 @@
 		B95497992E02801000C6E531 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		B95497A42E03BBBC00C6E531 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		B95497A82E05180000C6E531 /* SwipeMech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMech.swift; sourceTree = "<group>"; };
+		B977E70E2E0DAD760091B68B /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 		B9AD857F2E098F42005180D0 /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
 		B9AD858A2E09A1D5005180D0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B9FF6AA42DF5BA38005C93EC /* Tutorly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 		B91447A32E01206F00706937 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B977E70E2E0DAD760091B68B /* ChatLogView.swift */,
 				B9AD858A2E09A1D5005180D0 /* ImagePicker.swift */,
 				B95497A82E05180000C6E531 /* SwipeMech.swift */,
 				B95497972E02270000C6E531 /* SignUpView.swift */,
@@ -360,6 +363,7 @@
 				B94CD6372E0CA2C800FB7134 /* ChatUser.swift in Sources */,
 				B914478A2E011E6200706937 /* TutorlyApp.swift in Sources */,
 				B9AD858B2E09A1DA005180D0 /* ImagePicker.swift in Sources */,
+				B977E70F2E0DAD7D0091B68B /* ChatLogView.swift in Sources */,
 				B9AD85802E098F42005180D0 /* ChannelView.swift in Sources */,
 				B95497A92E05180700C6E531 /* SwipeMech.swift in Sources */,
 			);

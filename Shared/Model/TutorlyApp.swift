@@ -12,9 +12,6 @@ import SwiftData
 
 @main
 struct TutorlyApp: App {
-    init() {
-            FirebaseApp.configure()  // Configure here before anything else
-        }
     
     // Calling Delegate...
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate

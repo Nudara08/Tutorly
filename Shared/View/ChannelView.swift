@@ -8,13 +8,11 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-import SwiftUI
-import SDWebImageSwiftUI
-
-class MainMessagesViewModel: ObservableObject {
+class ChannelViewModel: ObservableObject {
     
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
+    @Published var isUserCurrentlyLoggedOut = false
     
     init() {
         
@@ -48,8 +46,6 @@ class MainMessagesViewModel: ObservableObject {
         }
     }
     
-    @Published var isUserCurrentlyLoggedOut = false
-    
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
         try? FirebaseManager.shared.auth.signOut()
@@ -61,16 +57,20 @@ struct ChannelView: View {
     
     @State var shouldShowLogOutOptions = false
     
-    @ObservedObject private var vm = MainMessagesViewModel()
+    @State var shouldNavigateToChatLogView = false
+    
+    @ObservedObject private var vm = ChannelViewModel()
     
     var body: some View {
         NavigationView {
             
             VStack {
-//                Text("User: \(vm.chatUser?.uid ?? "")")
-                
                 customNavBar
                 messagesView
+                
+                NavigationLink("", isActive: $shouldNavigateToChatLogView) {
+                    ChatLogView(chatUser: self.chatUser)
+                }
             }
             .overlay(
                 newMessageButton, alignment: .bottom)
@@ -140,27 +140,33 @@ struct ChannelView: View {
         ScrollView {
             ForEach(0..<10, id: \.self) { num in
                 VStack {
-                    HStack(spacing: 16) {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 32))
-                            .padding(8)
-                            .overlay(RoundedRectangle(cornerRadius: 44)
-                                        .stroke(Color(.label), lineWidth: 1)
-                            )
-                        
-                        
-                        VStack(alignment: .leading) {
-                            Text("Username")
-                                .font(.system(size: 16, weight: .bold))
-                            Text("Message sent to user")
-                                .font(.system(size: 14))
-                                .foregroundColor(Color(.lightGray))
+                    NavigationLink {
+                        Text("Destination")
+                    } label: {
+                        HStack(spacing: 16) {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 32))
+                                .padding(8)
+                                .overlay(RoundedRectangle(cornerRadius: 44)
+                                            .stroke(Color(.label), lineWidth: 1)
+                                )
+                            
+                            
+                            VStack(alignment: .leading) {
+                                Text("Username")
+                                    .font(.system(size: 16, weight: .bold))
+                                Text("Message sent to user")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color(.lightGray))
+                            }
+                            Spacer()
+                            
+                            Text("22d")
+                                .font(.system(size: 14, weight: .semibold))
                         }
-                        Spacer()
-                        
-                        Text("22d")
-                            .font(.system(size: 14, weight: .semibold))
                     }
+
+                    
                     Divider()
                         .padding(.vertical, 8)
                 }.padding(.horizontal)
@@ -169,9 +175,11 @@ struct ChannelView: View {
         }
     }
     
+    @State var shouldShowNewMessageScreen = false
+    
     private var newMessageButton: some View {
         Button {
-            
+            shouldShowNewMessageScreen.toggle()
         } label: {
             HStack {
                 Spacer()
@@ -186,11 +194,23 @@ struct ChannelView: View {
                 .padding(.horizontal)
                 .shadow(radius: 15)
         }
+        .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
+            CreateNewChannel(didSelectNewUser: { user in
+                print(user.email)
+                self.shouldNavigateToChatLogView.toggle()
+                self.chatUser = user
+            })
+        }
     }
+    
+    @State var chatUser: ChatUser?
 }
 
-#Preview {
-    ChannelView()
-    .environmentObject(StreamViewModel())
-
+struct MainMessagesView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChannelView()
+            .preferredColorScheme(.dark)
+        
+        ChannelView()
+    }
 }

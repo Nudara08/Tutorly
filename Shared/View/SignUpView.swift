@@ -79,44 +79,63 @@ struct SignUpView:View {
                                     )
                                     
                                 }
-                            }
-                            
-                            Group {
-                                TextField("Email", text: $email)
-                                    .keyboardType(.emailAddress)
-                                    .autocapitalization(.none)
-                                    .font(.custom("Didot", size: 16))
-                                
-                                    .padding(12)
-                                    .background(Color.clear)
-                                    .overlay(RoundedRectangle(cornerRadius: 2)
-                                        .stroke(Color.black, lineWidth: 2))
-                                    .frame(maxWidth: .infinity, minHeight: 44)
-                                SecureField("Password", text: $password)
-                                    .font(.custom("Didot", size: 16))
-                                    .padding(12)
-                                    .background(Color.clear)
-                                    .overlay(RoundedRectangle(cornerRadius: 2)
-                                        .stroke(Color.black, lineWidth: 2))
-                                    .frame(maxWidth: .infinity, minHeight: 44)
-                                // Dropdown menu for user type with label
-                                HStack {
-                                    Text("I am a...")
+                                Group {
+                                    TextField("Email", text: $email)
+                                        .keyboardType(.emailAddress)
+                                        .autocapitalization(.none)
                                         .font(.custom("Didot", size: 16))
-                                        .foregroundColor(.gray)
-                                    Picker(selection: $userType, label: EmptyView()) {
-                                        Text("student").tag("student")
-                                        Text("tutor").tag("tutor")
+                                    
+                                        .padding(12)
+                                        .background(Color.clear)
+                                        .overlay(RoundedRectangle(cornerRadius: 2)
+                                            .stroke(Color.black, lineWidth: 2))
+                                        .frame(maxWidth: .infinity, minHeight: 44)
+                                    SecureField("Password", text: $password)
+                                        .font(.custom("Didot", size: 16))
+                                        .padding(12)
+                                        .background(Color.clear)
+                                        .overlay(RoundedRectangle(cornerRadius: 2)
+                                            .stroke(Color.black, lineWidth: 2))
+                                        .frame(maxWidth: .infinity, minHeight: 44)
+                                    // Dropdown menu for user type with label
+                                    HStack {
+                                        Text("I am a...")
+                                            .font(.custom("Didot", size: 16))
+                                            .foregroundColor(.gray)
+                                        Picker(selection: $userType, label: EmptyView()) {
+                                            Text("student").tag("student")
+                                            Text("tutor").tag("tutor")
+                                        }
+                                        .pickerStyle(MenuPickerStyle())
+                                        .frame(maxWidth: .infinity, minHeight: 36) // reduced minHeight
+                                        .padding(.leading, -8)
                                     }
-                                    .pickerStyle(MenuPickerStyle())
+                                    .padding(8) // reduced padding
+                                    .background(Color.clear)
+                                    .overlay(RoundedRectangle(cornerRadius: 2)
+                                        .stroke(Color.black, lineWidth: 2))
                                     .frame(maxWidth: .infinity, minHeight: 36) // reduced minHeight
-                                    .padding(.leading, -8)
                                 }
-                                .padding(8) // reduced padding
-                                .background(Color.clear)
-                                .overlay(RoundedRectangle(cornerRadius: 2)
-                                    .stroke(Color.black, lineWidth: 2))
-                                .frame(maxWidth: .infinity, minHeight: 36) // reduced minHeight
+                            } else {
+                                Group {
+                                    TextField("Email", text: $email)
+                                        .keyboardType(.emailAddress)
+                                        .autocapitalization(.none)
+                                        .font(.custom("Didot", size: 16))
+                                    
+                                        .padding(12)
+                                        .background(Color.clear)
+                                        .overlay(RoundedRectangle(cornerRadius: 2)
+                                            .stroke(Color.black, lineWidth: 2))
+                                        .frame(maxWidth: .infinity, minHeight: 44)
+                                    SecureField("Password", text: $password)
+                                        .font(.custom("Didot", size: 16))
+                                        .padding(12)
+                                        .background(Color.clear)
+                                        .overlay(RoundedRectangle(cornerRadius: 2)
+                                            .stroke(Color.black, lineWidth: 2))
+                                        .frame(maxWidth: .infinity, minHeight: 44)
+                                }
                             }
                             Button {
                                 handleAction()
@@ -179,7 +198,7 @@ struct SignUpView:View {
                         DispatchQueue.main.async {
                             if userType == "student" {
                                 self.navigateToSwipeMech = true
-                            } else if userType == "tutor" {
+                            } else {
                                 self.navigateToLoadingScreen = true
                             }
                         }
@@ -206,6 +225,7 @@ struct SignUpView:View {
             }
             print ("Successfully created user: \(result?.user.uid ?? "")")
             self.LoginStatusMessage = "Successfully created user. Please log in."
+
             self.persistImageToStorage()
             
             

@@ -23,7 +23,7 @@ struct CardStackView: View {
         Profile(id: 4, name: "Martha Fernandez", image: "mrtiger-PN19hB7_lHE-unsplash", subject: "Chemistry", offset: 0),
         Profile(id: 5, name: "Nora Hutton", image: "nora-hutton-tCJ44OIqceU-unsplash", subject: "Physics", offset: 0),
         Profile(id: 6, name: "Omid Armi", image: "omid-armin-UVx7Xx_b4a0-unsplash", subject: "Art", offset: 0),
-        Profile(id: 7, name: "Her Royal Highness Teresa Mary Johnathan III", image: "omid-armin-yZwrmzKGKZA-unsplash", subject: "Dara Studies", offset: 0),
+        Profile(id: 7, name: "Teresa Johnathan", image: "omid-armin-yZwrmzKGKZA-unsplash", subject: "Physics", offset: 0),
     ]
     
     @State private var activeIndex: Int = 0
@@ -125,7 +125,9 @@ struct CardStackView: View {
                 Spacer()
             }
             .navigationDestination(isPresented: $showCreateChannel) {
-                CreateNewChannel()
+                CreateNewChannel(didSelectNewUser: { user in
+                    print(user.email)
+                })
                     .environmentObject(streamData)
             }
             .background(Color(red: 0.898, green: 0.78, blue: 0.804).edgesIgnoringSafeArea(.all))

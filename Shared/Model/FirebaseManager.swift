@@ -15,11 +15,12 @@ class FirebaseManager: NSObject {
     
     let auth: Auth
     let storage: Storage
-    var firestore = Firestore.firestore()
+    let firestore: Firestore
     
     static let shared = FirebaseManager()
     
     override init() {
+        FirebaseApp.configure()
         
         self.auth = Auth.auth()
         self.storage = Storage.storage()
