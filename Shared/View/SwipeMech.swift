@@ -29,11 +29,14 @@ struct CardStackView: View {
     @State private var activeIndex: Int = 0
     @State private var dragOffset: CGFloat = 0
     @State private var showCreateChannel = false
+    @State private var chatUser: ChatUser?
+    @State private var shouldNavigateToChatLogView = false
     @EnvironmentObject var streamData: StreamViewModel
     
     var body: some View {
         NavigationStack {
             VStack {
+                NavigationLink(destination: ChatLogView(chatUser: chatUser), isActive: $shouldNavigateToChatLogView) { EmptyView() }
                 // Header
                 HStack(spacing: 15) {
                     Button(action: {}) {
@@ -126,7 +129,9 @@ struct CardStackView: View {
             }
             .navigationDestination(isPresented: $showCreateChannel) {
                 CreateNewChannel(didSelectNewUser: { user in
-                    print(user.email)
+                    self.showCreateChannel = false
+                    self.chatUser = user
+                    self.shouldNavigateToChatLogView = true
                 })
                     .environmentObject(streamData)
             }
