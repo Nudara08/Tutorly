@@ -23,8 +23,9 @@ struct TutorlyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            SwipeMech()
         }
-        .modelContainer(for: [DataItem.self, Profile.self]) // Registering both DataItem and Profile for SwiftData
+        .modelContainer(for: [Profile.self]) 
     }
 }
 
