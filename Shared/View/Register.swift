@@ -72,7 +72,11 @@ struct Register: View {
                     .padding()
                     .background(Color(hex: "#e5c7cd"))
                     .fullScreenCover(isPresented: $showSignUpView) {
-                        SignUpView(isLoginMode: isLoginMode, didCompleteLoginProcess: <#() -> ()#>)
+                        SignUpView(isLoginMode: isLoginMode, didCompleteLoginProcess: {
+                            // Actions to take after sign-in or sign-up
+                            self.showSignUpView = false
+                            // Possibly navigate or fetch data
+                        })
                     }
                 }
             }

@@ -17,7 +17,6 @@
 		B948BA272E0032F700E44646 /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = B948BA262E0032F700E44646 /* NukeVideo */; };
 		B94CD62E2E0BA9ED00FB7134 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CD62D2E0BA9E200FB7134 /* DataItem.swift */; };
 		B94CD6322E0C997400FB7134 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CD6312E0C996E00FB7134 /* FirebaseManager.swift */; };
-		B94CD6352E0CA16500FB7134 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B94CD6342E0CA16500FB7134 /* SDWebImageSwiftUI */; };
 		B94CD6372E0CA2C800FB7134 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94CD6362E0CA2C100FB7134 /* ChatUser.swift */; };
 		B954979A2E0281AE00C6E531 /* StreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447A82E01214700706937 /* StreamViewModel.swift */; };
 		B954979B2E0281B600C6E531 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497972E02270000C6E531 /* SignUpView.swift */; };
@@ -25,6 +24,7 @@
 		B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91447AC2E0122FF00706937 /* LoadingScreen.swift */; };
 		B95497A52E03BBEB00C6E531 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A42E03BBBC00C6E531 /* Register.swift */; };
 		B95497A92E05180700C6E531 /* SwipeMech.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A82E05180000C6E531 /* SwipeMech.swift */; };
+		B977E6FE2E0CDC710091B68B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B977E6FD2E0CDC710091B68B /* SDWebImageSwiftUI */; };
 		B9AD85802E098F42005180D0 /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AD857F2E098F42005180D0 /* ChannelView.swift */; };
 		B9AD85832E099427005180D0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9AD85822E099427005180D0 /* FirebaseAuth */; };
 		B9AD85852E099427005180D0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9AD85842E099427005180D0 /* FirebaseFirestore */; };
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B94CD6352E0CA16500FB7134 /* SDWebImageSwiftUI in Frameworks */,
+				B977E6FE2E0CDC710091B68B /* SDWebImageSwiftUI in Frameworks */,
 				B948BA1E2E0032CF00E44646 /* StreamChatSwiftUI in Frameworks */,
 				B948BA212E0032F700E44646 /* Nuke in Frameworks */,
 				B9AD85872E099427005180D0 /* FirebaseStorage in Frameworks */,
@@ -217,7 +217,7 @@
 				B9AD85822E099427005180D0 /* FirebaseAuth */,
 				B9AD85842E099427005180D0 /* FirebaseFirestore */,
 				B9AD85862E099427005180D0 /* FirebaseStorage */,
-				B94CD6342E0CA16500FB7134 /* SDWebImageSwiftUI */,
+				B977E6FD2E0CDC710091B68B /* SDWebImageSwiftUI */,
 			);
 			productName = Tutorly;
 			productReference = B9FF6AA42DF5BA38005C93EC /* Tutorly.app */;
@@ -306,7 +306,7 @@
 				B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */,
 				B91447932E011F5900706937 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 				B9AD85812E099427005180D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				B94CD6332E0CA16500FB7134 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				B977E6FC2E0CDC710091B68B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B9FF6AA52DF5BA38005C93EC /* Products */;
@@ -706,7 +706,7 @@
 				minimumVersion = 12.0.0;
 			};
 		};
-		B94CD6332E0CA16500FB7134 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		B977E6FC2E0CDC710091B68B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
@@ -755,9 +755,9 @@
 			package = B948BA1F2E0032F700E44646 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeVideo;
 		};
-		B94CD6342E0CA16500FB7134 /* SDWebImageSwiftUI */ = {
+		B977E6FD2E0CDC710091B68B /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B94CD6332E0CA16500FB7134 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = B977E6FC2E0CDC710091B68B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 		B9AD85822E099427005180D0 /* FirebaseAuth */ = {
