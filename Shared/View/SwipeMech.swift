@@ -13,7 +13,7 @@ struct SwipeMech: View {
     @Environment(\.modelContext) private var context
     @Query private var allProfiles: [Profile]
     @State private var filteredProfiles: [Profile]? = nil
-    @State private var showSubjectFilter = false
+    @State private var showSubjectFilter = true
     @State private var selectedSubject: String = ""
     @State private var didSeed = false
     @State private var selectedTab: Int = 0 // 0: Home, 1: Messages, 2: Profile
@@ -43,53 +43,43 @@ struct SwipeMech: View {
                     profiles: filteredProfiles ?? allProfiles,
                     showSubjectFilter: $showSubjectFilter
                 )
-                    .onAppear {
-                        // Always clear and reseed the database for development/demo
-                        let fetchRequest = FetchDescriptor<Profile>()
-                        let profiles = (try? context.fetch(fetchRequest)) ?? []
-                        for profile in profiles {
-                            context.delete(profile)
-                        }
-                        let initialProfiles = [
-                            Profile(id: 0, name: "Albert Deran", image: "albert-dera-ILip77SbmOE-unsplash", subject: "Chemistry"),
-                            Profile(id: 1, name: "Chloe Alexis", image: "alexis-chloe-TYDkKEgc0Fg-unsplash", subject: "Physics"),
-                            Profile(id: 2, name: "Gabriel Silverio", image: "gabriel-silverio-u3WmDyKGsrY-unsplash", subject: "Maths"),
-                            Profile(id: 3, name: "Joseph Gonzalez", image: "joseph-gonzalez-iFgRcqHznqg-unsplash", subject: "Maths"),
-                            Profile(id: 4, name: "Martin Fernandez", image: "mrtiger-PN19hB7_lHE-unsplash", subject: "CHemistry"),
-                            Profile(id: 5, name: "Nora Hutton", image: "nora-hutton-tCJ44OIqceU-unsplash", subject: "English"),
-                            Profile(id: 6, name: "Omid Armi", image: "omid-armin-UVx7Xx_b4a0-unsplash", subject: "Business"),
-                            Profile(id: 7, name: "Terasa", image: "omid-armin-yZwrmzKGKZA-unsplash", subject: "Physics")
-                        ]
-                        for profile in initialProfiles {
-                            context.insert(profile)
-                        }
-                        try? context.save()
-                        didSeed.toggle()
-                        filteredProfiles = nil
-                        DispatchQueue.main.async {
-                            if let firstSubject = allNormalizedSubjects.first {
-                                selectedSubject = firstSubject
-                            }
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name("RemoveSwipedProfile"))) { notification in
+                    if let id = notification.object as? Int {
+                        // If filteredProfiles is in use, remove the profile from it
+                        if var currentFiltered = filteredProfiles {
+                            currentFiltered.removeAll { $0.id == id }
+                            filteredProfiles = currentFiltered
+                        } else {
+                            // Otherwise remove the profile directly from allProfiles by applying a new filter
+                            filteredProfiles = allProfiles.filter { $0.id != id }
                         }
                     }
-                    .onReceive(NotificationCenter.default.publisher(for: Notification.Name("RemoveSwipedProfile"))) { notification in
-                        if let id = notification.object as? Int {
-                            if filteredProfiles != nil {
-                                filteredProfiles?.removeAll { $0.id == id }
-                            } else {
-                                // If not filtered, remove from allProfiles is not possible (as it's @Query), so just ignore
-                            }
-                        }
-                    }
+                }
                 if showSubjectFilter {
                     Color.black.opacity(0.4).ignoresSafeArea()
                     VStack(spacing: 20) {
                         Text("Filter by Subject offered")
                             .font(.title2)
                             .fontWeight(.bold)
-                        if allNormalizedSubjects.isEmpty {
-                            ProgressView("Loading subjects...")
-                                                    .padding()
+//                            ProgressView("Loading subjects...")
+//                                                    .padding()
+                            Picker("Select Subject", selection: Binding(
+                                get: { selectedSubject },
+                                set: { selectedSubject = normalizeSubject($0) }
+                            )) {
+                                ForEach(allNormalizedSubjects, id: \.self) { subject in
+                                    Text(subject).tag(subject)
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                        .frame(maxWidth: .infinity)
+                        Button("Apply Filter") {
+                            applySubjectFilter()
+                            showSubjectFilter = false
+                        }
+                        .padding(100)
+                        .background(Color(hex: "#b2b3b3"))
+                        .cornerRadius(8)
                             HStack {
                                 Spacer()
                                 VStack {
@@ -119,25 +109,7 @@ struct SwipeMech: View {
                                     }
                                 }
                                 .padding(24)
-                        } else {
-                            Picker("Select Subject", selection: Binding(
-                                get: { selectedSubject },
-                                set: { selectedSubject = normalizeSubject($0) }
-                            )) {
-                                ForEach(allNormalizedSubjects, id: \.self) { subject in
-                                    Text(subject).tag(subject)
-                            }
-                        }
-                        .pickerStyle(WheelPickerStyle())
-                        .frame(maxWidth: .infinity)
-                        Button("Apply Filter") {
-                            applySubjectFilter()
-                            showSubjectFilter = false
-                        }
-                        .padding(100)
-                        .background(Color(hex: "#b2b3b3"))
-                        .cornerRadius(8)
-                    }
+                    
                 }
                 .padding()
                 .background(Color.white)
@@ -189,6 +161,36 @@ struct SwipeMech: View {
             .ignoresSafeArea(edges: .bottom)
         }
     }
+    .onAppear {
+        // Always clear and reseed the database for development/demo
+        let fetchRequest = FetchDescriptor<Profile>()
+        let profiles = (try? context.fetch(fetchRequest)) ?? []
+        for profile in profiles {
+            context.delete(profile)
+        }
+        let initialProfiles = [
+            Profile(id: 0, name: "Albert Deran", image: "albert-dera-ILip77SbmOE-unsplash", subject: "Chemistry"),
+            Profile(id: 1, name: "Chloe Alexis", image: "alexis-chloe-TYDkKEgc0Fg-unsplash", subject: "Physics"),
+            Profile(id: 2, name: "Gabriel Silverio", image: "gabriel-silverio-u3WmDyKGsrY-unsplash", subject: "Maths"),
+            Profile(id: 3, name: "Joseph Gonzalez", image: "joseph-gonzalez-iFgRcqHznqg-unsplash", subject: "Maths"),
+            Profile(id: 4, name: "Martin Fernandez", image: "mrtiger-PN19hB7_lHE-unsplash", subject: "CHemistry"),
+            Profile(id: 5, name: "Nora Hutton", image: "nora-hutton-tCJ44OIqceU-unsplash", subject: "English"),
+            Profile(id: 6, name: "Omid Armi", image: "omid-armin-UVx7Xx_b4a0-unsplash", subject: "Business"),
+            Profile(id: 7, name: "Terasa", image: "omid-armin-yZwrmzKGKZA-unsplash", subject: "Physics")
+        ]
+        for profile in initialProfiles {
+            context.insert(profile)
+        }
+        try? context.save()
+        didSeed.toggle()
+        // Give the view a tick to update the query
+        DispatchQueue.main.async {
+            filteredProfiles = allProfiles
+            if let firstSubject = allNormalizedSubjects.first {
+                selectedSubject = firstSubject
+            }
+        }
+    }
 }
 
 struct CardStackView: View {
@@ -205,22 +207,31 @@ struct CardStackView: View {
             VStack {
                 // Header
                 HStack(spacing: 15) {
-                    
                     Text("Tutors for you")
                         .font(.title)
                         .fontWeight(.bold)
-                    
                     Spacer(minLength: 0)
-                    
                     Button(action: {
                         showSubjectFilter = true // Use binding
                     }) {
-                        Text("Reset Filters")
+                        Text("Filter")
                             .font(.headline)
                             .foregroundColor(Color(red: 0.608, green: 0.482, blue: 0.443))
                             .padding(.leading, 8)
                             .padding(.trailing, 8)
                             .padding(.vertical, 6)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    Button(action: {
+                        // Reset filter
+                        NotificationCenter.default.post(name: Notification.Name("ResetSubjectFilter"), object: nil)
+                    }) {
+                        Text("Reset Filters")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .padding(.leading, 4)
+                            .padding(.trailing, 4)
+                            .padding(.vertical, 4)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
@@ -336,6 +347,7 @@ struct CardStackView: View {
         @State private var offset: CGSize = .zero
         
         var body: some View {
+            
             GeometryReader { geometry in
                 ZStack(alignment: .bottom) {
                     // Card Background

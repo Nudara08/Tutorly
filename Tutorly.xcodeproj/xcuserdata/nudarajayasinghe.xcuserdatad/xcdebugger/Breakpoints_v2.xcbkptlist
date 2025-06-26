@@ -3,4 +3,52 @@
    uuid = "00CBCC78-2EAD-4FAF-8C27-316E47CA7938"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A74F0EF-AE4F-4445-B643-B8492E1F3C16"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/View/SwipeMech.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "SwipeMech"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "6A74F0EF-AE4F-4445-B643-B8492E1F3C16 - 42e066de2fb85590"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tutorly.SwipeMech.init() -&gt; Tutorly.SwipeMech"
+                  moduleName = "Tutorly.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nudarajayasinghe/Documents/GitHub/Tutorly/Shared/View/SwipeMech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13">
+               </Location>
+               <Location
+                  uuid = "6A74F0EF-AE4F-4445-B643-B8492E1F3C16 - 99189d31511202ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tutorly.SwipeMech.init(_allProfiles: _SwiftData_SwiftUI.Query&lt;Tutorly.Profile, Swift.Array&lt;Tutorly.Profile&gt;&gt;) -&gt; Tutorly.SwipeMech"
+                  moduleName = "Tutorly.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nudarajayasinghe/Documents/GitHub/Tutorly/Shared/View/SwipeMech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
