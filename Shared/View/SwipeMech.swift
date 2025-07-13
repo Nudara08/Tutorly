@@ -39,21 +39,13 @@ struct CardStackView: View {
                 NavigationLink(destination: ChatLogView(chatUser: chatUser), isActive: $shouldNavigateToChatLogView) { EmptyView() }
                 // Header
                 HStack(spacing: 15) {
-                    Button(action: {}) {
-                        Image(systemName: "line.horizontal.3")
-                            .font(.title)
-                    }
                     
-                    Text("Tutorly")
+                    Text("Available Tutors")
                         .font(.title)
                         .fontWeight(.bold)
                     
                     Spacer(minLength: 0)
                     
-                    Button(action: {}) {
-                        Image(systemName: "bell")
-                            .font(.title)
-                    }
                 }
                 .foregroundColor(.black)
                 .padding()
@@ -126,6 +118,37 @@ struct CardStackView: View {
                 .frame(height: UIScreen.main.bounds.height * 0.6)
                 
                 Spacer()
+                // Bottom Navigation Bar
+                HStack(alignment: .center) {
+                    Spacer()
+                    // First button to navigate to HomeView
+                    NavigationLink(destination: SwipeMech()) {
+                        Image(systemName: "house.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.black)
+                            .frame(maxHeight: .infinity, alignment: .center)
+                    }
+                    Spacer()
+                    // Second button to navigate to ChannelView
+                    NavigationLink(destination: ChannelView()) {
+                        Image(systemName: "bubble.left.and.bubble.right.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.black)
+                            .frame(maxHeight: .infinity, alignment: .center)
+                    }
+                    Spacer()
+                    // Third button to navigate to ProfileView
+                    NavigationLink(destination: ProfileView()) {
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.black)
+                            .frame(maxHeight: .infinity, alignment: .center)
+                    }
+                    Spacer()
+                }
+                .frame(height: 40, alignment: .center)
+                .background(Color(red: 0.788, green: 0.737, blue: 0.729)) // #c9bcba
+                .ignoresSafeArea(edges: .bottom)
             }
             .navigationDestination(isPresented: $showCreateChannel) {
                 CreateNewChannel(didSelectNewUser: { user in

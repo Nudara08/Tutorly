@@ -9,7 +9,6 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
-import FirebaseFirestore
 
 class FirebaseManager: NSObject {
     
@@ -20,7 +19,6 @@ class FirebaseManager: NSObject {
     static let shared = FirebaseManager()
     
     override init() {
-        FirebaseApp.configure()
         
         self.auth = Auth.auth()
         self.storage = Storage.storage()
@@ -30,3 +28,5 @@ class FirebaseManager: NSObject {
     }
     
 }
+    
+

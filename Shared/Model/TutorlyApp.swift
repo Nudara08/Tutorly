@@ -9,9 +9,15 @@ import SwiftUI
 import StreamChat
 import Firebase
 import SwiftData
+import FirebaseAuth
+import FirebaseStorage
+
 
 @main
 struct TutorlyApp: App {
+    init(){
+    FirebaseApp.configure()
+    }
     
     // Calling Delegate...
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate

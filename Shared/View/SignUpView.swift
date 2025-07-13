@@ -30,7 +30,7 @@ struct SignUpView:View {
             if navigateToSwipeMech {
                 SwipeMech().environmentObject(StreamViewModel())
             } else if navigateToLoadingScreen {
-                LoadingScreen()
+                ChannelView()
             } else {
                 NavigationView {
                     ScrollView {

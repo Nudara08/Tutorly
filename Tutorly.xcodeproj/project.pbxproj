@@ -26,6 +26,7 @@
 		B95497A92E05180700C6E531 /* SwipeMech.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95497A82E05180000C6E531 /* SwipeMech.swift */; };
 		B977E6FE2E0CDC710091B68B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B977E6FD2E0CDC710091B68B /* SDWebImageSwiftUI */; };
 		B977E70F2E0DAD7D0091B68B /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B977E70E2E0DAD760091B68B /* ChatLogView.swift */; };
+		B977E7152E0DD0600091B68B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B977E7142E0DD05A0091B68B /* ProfileView.swift */; };
 		B9AD85802E098F42005180D0 /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AD857F2E098F42005180D0 /* ChannelView.swift */; };
 		B9AD85832E099427005180D0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9AD85822E099427005180D0 /* FirebaseAuth */; };
 		B9AD85852E099427005180D0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9AD85842E099427005180D0 /* FirebaseFirestore */; };
@@ -64,6 +65,7 @@
 		B95497A42E03BBBC00C6E531 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		B95497A82E05180000C6E531 /* SwipeMech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMech.swift; sourceTree = "<group>"; };
 		B977E70E2E0DAD760091B68B /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
+		B977E7142E0DD05A0091B68B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B9AD857F2E098F42005180D0 /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
 		B9AD858A2E09A1D5005180D0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B9FF6AA42DF5BA38005C93EC /* Tutorly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 		B91447A32E01206F00706937 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B977E7142E0DD05A0091B68B /* ProfileView.swift */,
 				B977E70E2E0DAD760091B68B /* ChatLogView.swift */,
 				B9AD858A2E09A1D5005180D0 /* ImagePicker.swift */,
 				B95497A82E05180000C6E531 /* SwipeMech.swift */,
@@ -359,6 +362,7 @@
 				B954979E2E0281C300C6E531 /* LoadingScreen.swift in Sources */,
 				B94CD62E2E0BA9ED00FB7134 /* DataItem.swift in Sources */,
 				B91447882E011E6200706937 /* ContentView.swift in Sources */,
+				B977E7152E0DD0600091B68B /* ProfileView.swift in Sources */,
 				B954979D2E0281BE00C6E531 /* CreateNewChannel.swift in Sources */,
 				B94CD6372E0CA2C800FB7134 /* ChatUser.swift in Sources */,
 				B914478A2E011E6200706937 /* TutorlyApp.swift in Sources */,

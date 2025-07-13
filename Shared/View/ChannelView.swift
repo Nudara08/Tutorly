@@ -138,7 +138,7 @@ struct ChannelView: View {
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(0..<10, id: \.self) { num in
+            ForEach(0..<1, id: \.self) { num in
                 VStack {
                     NavigationLink {
                         Text("Destination")
